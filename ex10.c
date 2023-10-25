@@ -33,5 +33,8 @@ int main(){
     printPerson(person2);
     destroyPerson(person);
     destroyPerson(person2);
+
+    struct Person person3 = {.name="Akshara",.age=31,.married=0};
+    printPerson(&person3);
     return 0;
 }
