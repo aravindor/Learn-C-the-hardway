@@ -25,13 +25,23 @@ void die(char *msg){
     printf("%s \n",msg);
 }
 
+void loadDb(struct Connection *connection){
+    int rc = fread(connection->database, sizeof(struct Database),1,connection->file);
+    if(rc !=1 ) die("Failed to load DB");
+}
+
 struct Connection *databaseConnect(char *name, char action) {
     struct Connection *connection = malloc(sizeof(struct Connection));
     if(!connection) die("Memory error");
+    connection->database = malloc(sizeof(struct Database));
+
     if(action =='c'){
         connection->file = fopen(name,"w");
     } else{
         connection->file = fopen(name,"r+");
+        if (connection->file){
+            loadDb(connection);
+        }
     }
     return connection;
 }
@@ -41,6 +51,9 @@ struct Connection *databaseConnect(char *name, char action) {
 void databaseDisConnect(struct Connection *connection) {
     if(connection->file){
         fclose(connection->file);
+    }
+    if(connection->database){
+        free(connection->database);
     }
     free(connection);
 }
@@ -63,9 +76,14 @@ void databaseCreate(struct Connection *connection){
 void databaseSet(struct Connection *pConnection, int id, char *name) {
     struct Address *address = &pConnection->database->rows[id];
     if(address->set) die("ID already exists , please remove");
-//    address.set = 1;
-//    char *res = strcpy(address.name,name);
-//    if(!res)die("Unable to set");
+    address->set = 1;
+    char *res = strcpy(address->name,name);
+    if(!res)die("Unable to set");
+}
+
+void getItem(struct Connection *connection,int id){
+    struct Address *address = &connection->database->rows[id];
+    printf("ID: %d  Name: %s \n",address->id,address->name);
 }
 
 
@@ -89,10 +107,13 @@ int main(int argc, char *argv[]){
             databaseWrite(connection);
             break;
         case 'g':
+            if (argc != 4) die("Need id ");
+            getItem(connection,id);
             break;
         case 's':
             if (argc != 5) die("Need id, name set");
             databaseSet(connection,id,argv[4]);
+            databaseWrite(connection);
             break;
         case 'd':
             break;
