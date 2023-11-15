@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/header_test.dir/header_test.c.o CMakeFiles/header_test.dir/math_funcs.c.o -o header_test 

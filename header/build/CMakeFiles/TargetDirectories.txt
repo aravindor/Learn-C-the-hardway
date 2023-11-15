@@ -1,0 +1,3 @@
+/home/luth3r/learn/C/Practice/Learn-C-the-hardway/header/build/CMakeFiles/header_test.dir
+/home/luth3r/learn/C/Practice/Learn-C-the-hardway/header/build/CMakeFiles/edit_cache.dir
+/home/luth3r/learn/C/Practice/Learn-C-the-hardway/header/build/CMakeFiles/rebuild_cache.dir
