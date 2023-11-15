@@ -1,0 +1,1 @@
+/usr/bin/cc -rdynamic CMakeFiles/ex18_main.dir/ex18_main.c.o CMakeFiles/ex18_main.dir/ex18.c.o -o ex18_main 

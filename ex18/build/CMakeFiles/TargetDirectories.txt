@@ -1,0 +1,3 @@
+/home/luth3r/learn/C/Practice/Learn-C-the-hardway/ex18/build/CMakeFiles/ex18_main.dir
+/home/luth3r/learn/C/Practice/Learn-C-the-hardway/ex18/build/CMakeFiles/edit_cache.dir
+/home/luth3r/learn/C/Practice/Learn-C-the-hardway/ex18/build/CMakeFiles/rebuild_cache.dir
